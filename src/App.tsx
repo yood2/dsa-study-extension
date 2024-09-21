@@ -1,4 +1,4 @@
-import Browse from './Browse/browse.tsx';
+import Browse from './components/data-table/browse.tsx';
 
 function App() {
     return (

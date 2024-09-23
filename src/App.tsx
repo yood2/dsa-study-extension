@@ -1,9 +1,9 @@
-import Browse from './components/data-table/browse.tsx';
+import BrowsePage from './components/browse/page.tsx';
 
 function App() {
     return (
         <>
-            <Browse />
+            <BrowsePage />
         </>
     );
 }

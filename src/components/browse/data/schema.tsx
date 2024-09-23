@@ -127,3 +127,9 @@ export const patterns = [
         label: 'Bucket Sort',
     },
 ];
+
+export type Note = {
+    title: string;
+    status: 'incomplete' | 'completed' | 'redo';
+    difficulty: 'easy' | 'medium' | 'hard';
+};

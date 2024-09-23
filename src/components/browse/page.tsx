@@ -1,4 +1,9 @@
-async function getData() {
+import { useState, useEffect } from 'react';
+import { Note } from './data/schema';
+import { columns } from './components/columns';
+import { DataTable } from './components/data-table';
+
+async function getData(): Promise<Note[]> {
     try {
         const response = await fetch('/data/data.json');
         if (!response.ok) {
@@ -12,11 +17,29 @@ async function getData() {
     }
 }
 
-export default async function BrowsePage() {
-    const rows = await getData();
+export default function BrowsePage() {
+    const [data, setData] = useState<Note[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        getData()
+            .then((notes) => {
+                setData(notes);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                setIsLoading(false);
+            });
+    }, []);
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
     return (
         <>
+            {/* <DataTable columns={columns} data={data} /> */}
             <p>Hello world!</p>
         </>
     );
